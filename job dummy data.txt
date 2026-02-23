@@ -1,0 +1,94 @@
+1. CloudStream Systems
+Position: Senior DevOps Engineer
+
+Location: Remote (US-Based)
+
+Type: Full-Time
+
+Salary: $145,000 – $180,000
+
+Description: Focus on automating infrastructure and scaling our Kubernetes clusters. You will work closely with the development team to streamline CI/CD pipelines and ensure 99.9% uptime for our global streaming platform.
+
+
+2. Nova Retail Group
+Position: E-commerce Floor Manager
+
+Location: London, UK
+
+Type: On-site
+
+Salary: £45,000 – £55,000
+
+Description: Oversee daily warehouse operations and local delivery logistics. You will be responsible for inventory accuracy, staff scheduling, and ensuring all high-priority orders are processed within a 2-hour window.
+
+
+3. Bloom Digital Marketing
+Position: Social Media Strategist
+
+Location: Los Angeles, CA
+
+Type: Part-Time
+
+Salary: $35 – $50 per hour
+
+Description: We are looking for a trend-savvy creator to manage our high-profile beauty clients. You will handle content calendars, community engagement, and basic video editing for TikTok and Reels.
+
+
+4. Ironclad Security
+Position: Junior Penetration Tester
+
+Location: Austin, TX
+
+Type: Hybrid
+
+Salary: $80,000 – $95,000
+
+Description: Identify vulnerabilities in client networks and web applications. You will conduct authorized simulated attacks and provide detailed reports on remediation steps for IT departments.
+
+
+5. Terra Earth Labs
+Position: Environmental Researcher
+
+Location: Denver, CO
+
+Type: Contract (6 Months)
+
+Salary: $6,000 per month
+
+Description: Assist in the collection and analysis of soil samples from regional reforestation sites. Requires proficiency in GIS software and a willingness to travel to remote field locations.
+
+
+6. Velocity Fintech
+Position: Customer Success Lead
+
+Location: Singapore
+
+Type: Full-Time
+
+Salary: $90,000 – $110,000 (SGD)
+
+Description: Act as the primary point of contact for our enterprise-level banking clients. You will lead onboarding sessions, gather product feedback, and work to reduce churn through proactive relationship management.
+
+
+7. Pixel & Paper
+Position: Senior Graphic Designer
+
+Location: Berlin, Germany
+
+Type: Full-Time
+
+Salary: €50,000 – €65,000
+
+Description: Lead the visual direction for both print and digital media campaigns. You’ll be responsible for maintaining brand consistency across all platforms and mentoring junior design staff.
+
+
+8. Zenith Healthcare
+Position: Telehealth Registered Nurse
+
+Location: Remote
+
+Type: Night Shift
+
+Salary: $75,000 – $88,000
+
+Description: Provide high-quality clinical advice and triage services via video calls. Candidates must have an active nursing license and at least 3 years of emergency or acute care experience.

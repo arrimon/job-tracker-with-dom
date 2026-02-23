@@ -29,37 +29,103 @@
         </header>
 
         <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
+            <!-- All Job Card -->
             <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-[0_1px_3px_rgba(0,0,0,0.1)] flex items-center gap-5">
                 <div>
                     <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Applications</p>
-                    <h3 id="all-job" class="text-3xl font-bold mt-1">8</h3>
+                    <h3 id="all-job" class="text-3xl font-bold mt-1">0</h3>
                 </div>
             </div>
-
+            <!-- All Interview Job -->
             <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-[0_1px_3px_rgba(0,0,0,0.1)] flex items-center gap-5">
                 <div>
                     <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Interviews</p>
-                    <h3 id="interview-count" class="text-3xl font-bold mt-1 text-green-600">0</h3>
+                    <h3 id="all-interview" class="text-3xl font-bold mt-1 text-green-600">0</h3>
                 </div>
             </div>
-
+            <!-- All Rejected Job -->
             <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-[0_1px_3px_rgba(0,0,0,0.1)] flex items-center gap-5">
                 <div>
                     <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Rejected</p>
-                    <h3 id="rejected-count" class="text-3xl font-bold mt-1 text-red-600">0</h3>
+                    <h3 id="all-rejected" class="text-3xl font-bold mt-1 text-red-600">0</h3>
                 </div>
             </div>
 
         </section>
+
+        <section class="grid grid-cols-1 py-8 px-1">
+            <hr class="border-[#E6E7E9] mb-6">
+
+            <div class="flex justify-between items-center">
+                <h1 class="text-xl font-semibold tracking-tight text-gray-700">Available Jobs</h1>
+                <h5 class="text-md text-gray-500"><span id="all-job-count font-extrabold">0</span> jobs</h5>
+            </div>
+
+            <div class="toggle-btn flex gap-4 mt-2">
+                <div id="all-filter-btn" class="btn btn-sm bg-[#3B82F6] text-white px-6 rounded-md">All</div>
+                <div id="interview-filter-btn" class="btn btn-sm rounded-md">Interview</div>
+                <div id="rejected-filter-btn" class="btn btn-sm rounded-md">Rejected</div>
+            </div>
+        </section>
+
         
-        <div class="mt-12 p-12 border-2 border-dashed border-gray-200 rounded-2xl text-center">
+        <!-- <div class="mt-6 p-12 border-2 border-dashed border-gray-200 rounded-2xl text-center">
             <p class="text-gray-400">Application list will appear here...</p>
-        </div>
+        </div> -->
+
+        <section id="all-cards">
+            <div class="card border border-base-300 bg-base-100 shadow-sm mb-4">
+                <div class="card-body p-5">
+                    
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <!-- Job company name -->
+                            <h2 class="card-title text-primary companyName"> CloudStream Systems</h2>
+                            <!-- Job position -->
+                            <p class="text-sm opacity-70 jobPosition">Senior DevOps Engineer</p>
+                        </div>
+
+                        <!-- Job Delete btn -->
+                        <button id="" class="btn btn-sm btn-circle btn-outline opacity-50 btnDelete">
+                            <i class="w-4 h-4 hover:text-red-600" data-lucide="trash-2"></i>
+                        </button>
+                    </div>
+
+                    <!-- Job Location & Salary -->
+                    <div class="text-xs opacity-50 flex gap-2">
+                        <!-- Location -->
+                        <span class="jobLocation"> Remote (US-Based) • Full-time • </span> 
+                        <!-- Salary -->
+                        <span class="jobSalary"> $145,000 – $180,000</span>
+                    </div>
+
+                    <!-- Job Status -->
+                    <div class="badge badge-ghost mt-2 jobStatus">NOT APPLIED</div>
+
+                    <p class="text-sm mt-3 jobDescription">
+                        Focus on automating infrastructure and scaling our Kubernetes clusters. You will work closely with the development team to streamline CI/CD pipelines and ensure 99.9% uptime for our global streaming platform.
+                    </p>
+
+                    <!-- Interview Apply or Get Reject -->
+                    <div class="card-actions mt-4">
+                        <!-- Interview -->
+                        <button id="" class="btn btn-outline btn-success btn-sm applyInterviewBtn">Interview</button>
+                        <!-- Rejected -->
+                        <button id="" class="btn btn-outline btn-error btn-sm getRejectedBtn">Rejected</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
 
     </main>
 
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
     <!-- JavaScripts Link -->
-    <script src="./js/main.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html>
