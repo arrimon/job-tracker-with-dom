@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    
+    <title>Job Application Tracker</title>
+    <style type="text/tailwindcss">
+        @theme {
+            --font-geist: "Geist", sans-serif;
+        }
+        * { font-family: var(--font-geist); }
+        body { @apply bg-gray-50 text-[#1A1C1E]; }
+    </style>
+</head>
+<body>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        
+        <header class="mb-10">
+            <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">Job Application Tracker</h1>
+        </header>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-[0_1px_3px_rgba(0,0,0,0.1)] flex items-center gap-5">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Applications</p>
+                    <h3 id="all-job" class="text-3xl font-bold mt-1">8</h3>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-[0_1px_3px_rgba(0,0,0,0.1)] flex items-center gap-5">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Interviews</p>
+                    <h3 id="interview-count" class="text-3xl font-bold mt-1 text-green-600">0</h3>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-[0_1px_3px_rgba(0,0,0,0.1)] flex items-center gap-5">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Rejected</p>
+                    <h3 id="rejected-count" class="text-3xl font-bold mt-1 text-red-600">0</h3>
+                </div>
+            </div>
+
+        </section>
+        
+        <div class="mt-12 p-12 border-2 border-dashed border-gray-200 rounded-2xl text-center">
+            <p class="text-gray-400">Application list will appear here...</p>
+        </div>
+
+    </main>
+
+    <!-- JavaScripts Link -->
+    <script src="./js/main.js"></script>
+</body>
+</html>
