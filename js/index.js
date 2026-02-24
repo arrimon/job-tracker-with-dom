@@ -1,109 +1,140 @@
 // index.js
 // connected main.js
-import {jobData} from './main.js'
-const getElement = (id) => {
+import { jobData } from './main.js';
+
+ const getElement = (id) => {
     const textIdValue = document.getElementById(id);
     return textIdValue;
 }
 
-// array for topCardAllInterview
-let topCardAllInterviewList = []
-// array for topCardAllRejected
-let topCardAllRejectedList = []
-
-// card id get
+// Top card Elements
 const topCardAllJob = getElement('all-job');
 const topCardAllInterview = getElement('all-interview');
 const topCardAllRejected = getElement('all-rejected');
+const allJobCountLabel = getElement('all-job-count');
 
-// filter btn id get
+// toggle filter button
 const allFilterBtn = getElement('all-filter-btn');
 const interviewFilterBtn = getElement('interview-filter-btn');
 const rejectedFilterBtn = getElement('rejected-filter-btn');
 
-
-
-// all cards section ig get
+// All job cards
 const allCards = getElement('all-cards');
 
-// console.log(allCards.children.length)
-
-// Calculate total card/job count
-function totalJobCount(){
-    // total card job count
-    topCardAllJob.innerText = allCards.children.length;
-    // Interview list count
-    topCardAllInterview.innerText = topCardAllInterviewList.length;
-    // Rejected list count
-    topCardAllRejected.innerText = topCardAllRejectedList.length;
-
+// total count updated
+function totalJobCount() {
+    topCardAllJob.innerText = jobData.length;
+    topCardAllInterview.innerText = jobData.filter(j => j.status === 'interview').length;
+    topCardAllRejected.innerText = jobData.filter(j => j.status === 'rejected').length;
+    allJobCountLabel.innerText = allCards.children.length; 
 }
-totalJobCount()
 
+// dinamic data render function
+function renderJobs(filterStatus = 'all') {
+    allCards.innerHTML = '';
 
-// Toggle activBtn function 
+    // filter logic implement
+    const filteredData = jobData.filter(job => {
+        if (filterStatus === 'all') return true;
+        return job.status === filterStatus;
+    });
+
+    filteredData.forEach(job => {
+        const card = document.createElement('div');
+        card.className = 'card border border-base-300 bg-base-100 shadow-sm mb-4';
+        
+        // status wise dinamic class
+        let badgeClass = 'badge-ghost';
+        if(job.status === 'interview') badgeClass = 'badge-success';
+        if(job.status === 'rejected') badgeClass = 'badge-error';
+
+        card.innerHTML = `
+            <div class="card-body p-5">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h2 class="card-title text-primary companyName">${job.company}</h2>
+                        <p class="text-sm opacity-70 jobPosition">${job.position}</p>
+                    </div>
+                    <button class="btn btn-sm btn-circle btn-outline opacity-50 btnDelete" data-id="${job.id}">
+                        <i class="w-4 h-4" data-lucide="trash-2"></i>
+                    </button>
+                </div>
+                <div class="text-xs opacity-50 flex gap-2">
+                    <span>${job.location} • ${job.type} •</span> 
+                    <span>${job.salary}</span>
+                </div>
+                <div class="badge ${badgeClass} mt-2 jobStatus">
+                    ${job.status.toUpperCase()}
+                </div>
+                <p class="text-sm mt-3 jobDescription">${job.description}</p>
+                <div class="card-actions mt-4">
+                    <button class="btn btn-outline btn-success btn-sm applyInterviewBtn" data-id="${job.id}">Interview</button>
+                    <button class="btn btn-outline btn-error btn-sm getRejectedBtn" data-id="${job.id}">Rejected</button>
+                </div>
+            </div>
+        `;
+        allCards.appendChild(card);
+    });
+
+    lucide.createIcons(); 
+    totalJobCount();
+}
+
+// toggle filter
 function toggleStyle(activeBtn) {
-    // all button active style remove
     [allFilterBtn, interviewFilterBtn, rejectedFilterBtn].forEach(btn => {
         btn.classList.remove('bg-[#3B82F6]', 'text-white');
         btn.classList.add('bg-base-200', 'text-black');
     });
-
-    // slelected btn get active style
     activeBtn.classList.remove('bg-base-200', 'text-black');
     activeBtn.classList.add('bg-[#3B82F6]', 'text-white');
 }
 
-
+// filter event
 allFilterBtn.addEventListener('click', function () {
     toggleStyle(this);
+    renderJobs('all');
 });
 
 interviewFilterBtn.addEventListener('click', function () {
     toggleStyle(this);
+    renderJobs('interview');
 });
 
 rejectedFilterBtn.addEventListener('click', function () {
     toggleStyle(this);
+    renderJobs('rejected');
 });
 
-
-// Event Delegation
+// Event Delegation (Delete, Interview, Reject)
 allCards.addEventListener('click', function (event) {
+    const target = event.target;
+    const jobId = parseInt(target.closest('button')?.dataset.id);
 
-    const card = event.target.closest('.card');
+    if (!jobId) return;
 
-    // DELETE
-    if (event.target.closest('.btnDelete')) {
-        console.log('Delete clicked');
-        card.remove();
-        totalJobCount();
+    // Delet logic
+    if (target.closest('.btnDelete')) {
+        const index = jobData.findIndex(j => j.id === jobId);
+        jobData.splice(index, 1);
+        renderJobs(); 
     }
 
-    // INTERVIEW
-    if (event.target.closest('.applyInterviewBtn')) {
-        console.log('Interview clicked');
-
-        const statusBadge = card.querySelector('.jobStatus');
-        statusBadge.innerText = 'INTERVIEW';
-        statusBadge.classList.remove('badge-ghost');
-        statusBadge.classList.add('badge-success');
-
-        topCardAllInterviewList.push(card);
-        totalJobCount();
+    // interview logic
+    if (target.closest('.applyInterviewBtn')) {
+        const job = jobData.find(j => j.id === jobId);
+        job.status = 'interview';
+        // after change status update it
+        renderJobs();
     }
 
-    // REJECTED
-    if (event.target.closest('.getRejectedBtn')) {
-        console.log('Rejected clicked');
-
-        const statusBadge = card.querySelector('.jobStatus');
-        statusBadge.innerText = 'REJECTED';
-        statusBadge.classList.remove('badge-ghost');
-        statusBadge.classList.add('badge-error');
-
-        topCardAllRejectedList.push(card);
-        totalJobCount();
+    // rejected logic
+    if (target.closest('.getRejectedBtn')) {
+        const job = jobData.find(j => j.id === jobId);
+        job.status = 'rejected';
+        renderJobs();
     }
-
 });
+
+// Initial Render
+renderJobs();
