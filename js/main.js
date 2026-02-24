@@ -1,11 +1,4 @@
-console.log('Connected with main.js')
-
-// Total Job count Function
-// export const getElement = (id) => {
-//     const textIdValue = document.getElementById(id);
-//     return textIdValue;
-// }
-
+// main.js
 // Job Data
 export const jobData = [
   {

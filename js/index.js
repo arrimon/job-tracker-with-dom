@@ -1,4 +1,6 @@
+// index.js
 // connected main.js
+import {jobData} from './main.js'
 const getElement = (id) => {
     const textIdValue = document.getElementById(id);
     return textIdValue;
@@ -63,4 +65,45 @@ interviewFilterBtn.addEventListener('click', function () {
 
 rejectedFilterBtn.addEventListener('click', function () {
     toggleStyle(this);
+});
+
+
+// Event Delegation
+allCards.addEventListener('click', function (event) {
+
+    const card = event.target.closest('.card');
+
+    // DELETE
+    if (event.target.closest('.btnDelete')) {
+        console.log('Delete clicked');
+        card.remove();
+        totalJobCount();
+    }
+
+    // INTERVIEW
+    if (event.target.closest('.applyInterviewBtn')) {
+        console.log('Interview clicked');
+
+        const statusBadge = card.querySelector('.jobStatus');
+        statusBadge.innerText = 'INTERVIEW';
+        statusBadge.classList.remove('badge-ghost');
+        statusBadge.classList.add('badge-success');
+
+        topCardAllInterviewList.push(card);
+        totalJobCount();
+    }
+
+    // REJECTED
+    if (event.target.closest('.getRejectedBtn')) {
+        console.log('Rejected clicked');
+
+        const statusBadge = card.querySelector('.jobStatus');
+        statusBadge.innerText = 'REJECTED';
+        statusBadge.classList.remove('badge-ghost');
+        statusBadge.classList.add('badge-error');
+
+        topCardAllRejectedList.push(card);
+        totalJobCount();
+    }
+
 });
