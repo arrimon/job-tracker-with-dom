@@ -39,42 +39,55 @@ function renderJobs(filterStatus = 'all') {
         return job.status === filterStatus;
     });
 
-    filteredData.forEach(job => {
-        const card = document.createElement('div');
-        card.className = 'card border border-base-300 bg-base-100 shadow-sm mb-4';
-        
-        // status wise dinamic class
-        let badgeClass = 'badge-ghost';
-        if(job.status === 'interview') badgeClass = 'badge-success';
-        if(job.status === 'rejected') badgeClass = 'badge-error';
-
-        card.innerHTML = `
-            <div class="card-body p-5">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h2 class="card-title text-primary companyName">${job.company}</h2>
-                        <p class="text-sm opacity-70 jobPosition">${job.position}</p>
-                    </div>
-                    <button class="btn btn-sm btn-circle btn-outline opacity-50 btnDelete" data-id="${job.id}">
-                        <i class="w-4 h-4" data-lucide="trash-2"></i>
-                    </button>
-                </div>
-                <div class="text-xs opacity-50 flex gap-2">
-                    <span>${job.location} • ${job.type} •</span> 
-                    <span>${job.salary}</span>
-                </div>
-                <div class="badge ${badgeClass} mt-2 jobStatus">
-                    ${job.status.toUpperCase()}
-                </div>
-                <p class="text-sm mt-3 jobDescription">${job.description}</p>
-                <div class="card-actions mt-4">
-                    <button class="btn btn-outline btn-success btn-sm applyInterviewBtn" data-id="${job.id}">Interview</button>
-                    <button class="btn btn-outline btn-error btn-sm getRejectedBtn" data-id="${job.id}">Rejected</button>
-                </div>
+    // if empty showing this empty page
+    if (filteredData.length === 0) {
+        allCards.innerHTML = `
+            <div class="flex flex-col items-center justify-center p-12 bg-white rounded-2xl border border-dashed border-gray-200 min-h-[350px] w-full">
+                <img src="image/jobs.png" alt="No jobs" class="w-32 mb-4">
+                <h2 class="text-2xl font-bold text-gray-800">No jobs available</h2>
+                <p class="text-gray-500">Check back soon for new job opportunities</p>
             </div>
         `;
-        allCards.appendChild(card);
-    });
+    }
+    else{
+
+        filteredData.forEach(job => {
+            const card = document.createElement('div');
+            card.className = 'card border border-base-300 bg-base-100 shadow-sm mb-4';
+            
+            // status wise dinamic class
+            let badgeClass = 'badge-ghost';
+            if(job.status === 'interview') badgeClass = 'badge-success';
+            if(job.status === 'rejected') badgeClass = 'badge-error';
+
+            card.innerHTML = `
+                <div class="card-body p-5">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h2 class="card-title text-primary companyName">${job.company}</h2>
+                            <p class="text-sm opacity-70 jobPosition">${job.position}</p>
+                        </div>
+                        <button class="btn btn-sm btn-circle btn-outline opacity-50 btnDelete" data-id="${job.id}">
+                            <i class="w-4 h-4" data-lucide="trash-2"></i>
+                        </button>
+                    </div>
+                    <div class="text-xs opacity-50 flex gap-2">
+                        <span>${job.location} • ${job.type} •</span> 
+                        <span>${job.salary}</span>
+                    </div>
+                    <div class="badge ${badgeClass} mt-2 jobStatus">
+                        ${job.status.toUpperCase()}
+                    </div>
+                    <p class="text-sm mt-3 jobDescription">${job.description}</p>
+                    <div class="card-actions mt-4">
+                        <button class="btn btn-outline btn-success btn-sm applyInterviewBtn" data-id="${job.id}">Interview</button>
+                        <button class="btn btn-outline btn-error btn-sm getRejectedBtn" data-id="${job.id}">Rejected</button>
+                    </div>
+                </div>
+            `;
+            allCards.appendChild(card);
+        });
+    }
 
     lucide.createIcons(); 
     totalJobCount();
